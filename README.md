@@ -47,5 +47,5 @@ mekiku-webをZoom字幕APIに対応させるのは、クライアント側コー
 
 ## 参考
 
-Closed captioning and live transcription – Zoom Help Center
+Closed captioning and live transcription – Zoom Help Center<br>
 https://support.zoom.us/hc/en-us/articles/207279736-Closed-Captioning
