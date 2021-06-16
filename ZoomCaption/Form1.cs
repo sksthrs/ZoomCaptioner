@@ -9,62 +9,135 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Net;
+using System.Runtime.CompilerServices;
 
 namespace ZoomCaption
 {
     public partial class Form1 : Form
     {
+        private static readonly HttpClient _httpClient = new HttpClient();
+
+        private int Seq { get; set; } = 0;
+
+        private bool IsLegitSeq() => Seq > 0;
+        private void ResetSeq() { Seq = 0; }
+
+        private string GetApiKey() => IsLegitApiKey() ? textUrl.Text : "";
+        private bool IsLegitApiKey() => textUrl.Text.StartsWith("https://");
+
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void addLog(string message)
+        private void WriteInnerLog(string message, [CallerMemberName] string callerName = "")
         {
-            textLog.AppendText(message + "\r\n");
+            var now = DateTimeOffset.Now.ToString("u");
+            var msg = $"{now} [{callerName}] {message}";
+            System.Diagnostics.Debug.WriteLine(msg);
         }
 
-        private string makeUrl()
+        private void AddLog(string message, [CallerMemberName] string callerName = "")
         {
-            var c = 0;
-            var count = int.TryParse(textSeq.Text, out c) ? c : 0;
-            count++;
-            var countStr = count.ToString();
-            textSeq.Text = countStr;
-            return textUrl.Text + "&lang=jp-JP&seq=" + countStr;
+            var now = DateTimeOffset.Now.ToString("HH:mm:ss.ff");
+            textLog.AppendText($"{now} {message}\r\n");
+            WriteInnerLog(message, callerName);
         }
 
-        private async void sendMessage(string message)
+        private void OnSuccess()
         {
-            textInput.Text = "";
+            textInput.BackColor = SystemColors.Window;
+        }
+
+        private void OnFailure(string message)
+        {
+            textInput.BackColor = Color.Pink;
+            AddLog(message);
+        }
+
+        private string MakeGetUrl(string apikey)
+        {
+            return apikey.Replace("/closedcaption?", "/closedcaption/seq?");
+        }
+
+        private string MakePostUrl(string apiKey, int seq, string lang = "jp-JP")
+        {
+            return $"{apiKey}&lang={lang}&seq={seq}";
+        }
+
+        private async Task<int> GetSeqAsync(string apiKey)
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync(MakeGetUrl(apiKey));
+                if (response.IsSuccessStatusCode != true) return -1;
+                var message = await response.Content.ReadAsStringAsync();
+                if (int.TryParse(message, out int number))
+                {
+                    return number;
+                }
+            }
+            catch (Exception ex)
+            {
+                WriteInnerLog(ex.Message);
+            }
+            return -1;
+        }
+
+        private async Task<int> FetchSeq(string apiKey)
+        {
+            var s = await GetSeqAsync(apiKey);
+            return (s >= 0) ? s : 0;
+        }
+
+        private async Task<HttpResponseMessage> TrySendMessageAsync(string apiKey, int seq, string message)
+        {
+            var url = MakePostUrl(apiKey, seq);
             var content = new StringContent(message, Encoding.UTF8);
-            var url = makeUrl();
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls | SecurityProtocolType.Tls11 | SecurityProtocolType.Tls12;
-            using (var client = new HttpClient())
-            {
-                var response = await client.PostAsync(url, content);
-                if (response.IsSuccessStatusCode)
-                {
-                    textInput.BackColor = SystemColors.Window;
-                }
-                else
-                {
-                    textInput.BackColor = Color.Pink;
-                    addLog("[" + response.StatusCode.ToString() + "] " 
-                        + response.ReasonPhrase);
-                }
-            }
+            return await _httpClient.PostAsync(url, content);
         }
 
-        private void textInput_KeyPress(object sender, KeyPressEventArgs e)
+        private async Task<bool> TrySendAsync(string message)
         {
-            if (e.KeyChar == 13 && textInput.Text.Length > 0 && textUrl.Text.Length > 0)
+            if (IsLegitApiKey() != true) return false;
+            var apiKey = GetApiKey();
+
+            if (IsLegitSeq()) { Seq++; }
+            else { Seq = await FetchSeq(apiKey) + 1; }
+            var responseTry1 = await TrySendMessageAsync(apiKey, Seq, message);
+            if (responseTry1.IsSuccessStatusCode)
             {
-                sendMessage(textInput.Text);
+                OnSuccess();
+                return true;
+            }
+
+            Seq = await FetchSeq(apiKey) + 1;
+            var responseTry2 = await TrySendMessageAsync(apiKey, Seq, message);
+            if (responseTry2.IsSuccessStatusCode)
+            {
+                OnSuccess();
+                return true;
+            }
+            else
+            {
+                OnFailure($"[{responseTry2.StatusCode}] {responseTry2.ReasonPhrase}");
+                Seq = 0;
+                return false;
             }
         }
 
-        private void insertFKey(TextBox textBox)
+        private async void textInput_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 13 && textInput.Text.Length > 0 && IsLegitApiKey())
+            {
+                var message = textInput.Text;
+                textInput.Text = "";
+                await TrySendAsync(message);
+            }
+        }
+
+        private void InsertFKey(TextBox textBox)
         {
             var ins = textBox.Text;
             if (ins.Length < 1) return;
@@ -87,13 +160,13 @@ namespace ZoomCaption
         private void textInput_KeyDown(object sender, KeyEventArgs e)
         {
             System.Diagnostics.Debug.WriteLine("keyData:" + e.KeyData.ToString());
-            if (e.KeyData == Keys.F1) { insertFKey(textF1); }
-            if (e.KeyData == Keys.F2) { insertFKey(textF2); }
-            if (e.KeyData == Keys.F3) { insertFKey(textF3); }
-            if (e.KeyData == Keys.F4) { insertFKey(textF4); }
-            if (e.KeyData == Keys.F5) { insertFKey(textF5); }
-            if (e.KeyData == Keys.F6) { insertFKey(textF6); }
-            if (e.KeyData == Keys.F7) { insertFKey(textF7); }
+            if (e.KeyData == Keys.F1) { InsertFKey(textF1); }
+            if (e.KeyData == Keys.F2) { InsertFKey(textF2); }
+            if (e.KeyData == Keys.F3) { InsertFKey(textF3); }
+            if (e.KeyData == Keys.F4) { InsertFKey(textF4); }
+            if (e.KeyData == Keys.F5) { InsertFKey(textF5); }
+            if (e.KeyData == Keys.F6) { InsertFKey(textF6); }
+            if (e.KeyData == Keys.F7) { InsertFKey(textF7); }
             if (e.KeyData == Keys.F8)
             {
                 Parenthesize("「", "」");
@@ -106,6 +179,16 @@ namespace ZoomCaption
             {
                 textInput.Text = "";
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            TopMost = checkBox1.Checked;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ResetSeq();
         }
     }
 }
