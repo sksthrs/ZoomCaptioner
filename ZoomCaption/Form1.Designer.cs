@@ -28,11 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.textUrl = new System.Windows.Forms.TextBox();
+            this.components = new System.ComponentModel.Container();
             this.textInput = new System.Windows.Forms.TextBox();
-            this.textLog = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.labelF1 = new System.Windows.Forms.Label();
             this.textF1 = new System.Windows.Forms.TextBox();
             this.labelF2 = new System.Windows.Forms.Label();
@@ -47,361 +44,394 @@
             this.textF6 = new System.Windows.Forms.TextBox();
             this.labelF7 = new System.Windows.Forms.Label();
             this.textF7 = new System.Windows.Forms.TextBox();
-            this.panelF1 = new System.Windows.Forms.Panel();
-            this.panelF2 = new System.Windows.Forms.Panel();
-            this.panelF3 = new System.Windows.Forms.Panel();
-            this.panelF4 = new System.Windows.Forms.Panel();
-            this.panelF5 = new System.Windows.Forms.Panel();
-            this.panelF6 = new System.Windows.Forms.Panel();
-            this.panelF7 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.flowLayoutPanel1.SuspendLayout();
-            this.panelF1.SuspendLayout();
-            this.panelF2.SuspendLayout();
-            this.panelF3.SuspendLayout();
-            this.panelF4.SuspendLayout();
-            this.panelF5.SuspendLayout();
-            this.panelF6.SuspendLayout();
-            this.panelF7.SuspendLayout();
+            this.buttonMenu = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.menuZoomToken = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuShowLog = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuTopMost = new System.Windows.Forms.ToolStripMenuItem();
+            this.menuFocusInput = new System.Windows.Forms.ToolStripMenuItem();
+            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.panel6 = new System.Windows.Forms.Panel();
+            this.panel7 = new System.Windows.Forms.Panel();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
+            this.menuFocusF1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.contextMenuStrip1.SuspendLayout();
+            this.tableLayoutPanel1.SuspendLayout();
+            this.panel1.SuspendLayout();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
+            this.panel4.SuspendLayout();
+            this.panel5.SuspendLayout();
+            this.panel6.SuspendLayout();
+            this.panel7.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // textUrl
-            // 
-            this.textUrl.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textUrl.Location = new System.Drawing.Point(183, 14);
-            this.textUrl.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textUrl.Name = "textUrl";
-            this.textUrl.Size = new System.Drawing.Size(519, 33);
-            this.textUrl.TabIndex = 0;
             // 
             // textInput
             // 
             this.textInput.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.textInput.Location = new System.Drawing.Point(13, 57);
+            this.textInput.Location = new System.Drawing.Point(13, 13);
             this.textInput.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.textInput.Name = "textInput";
-            this.textInput.Size = new System.Drawing.Size(689, 33);
-            this.textInput.TabIndex = 1;
+            this.textInput.Size = new System.Drawing.Size(682, 30);
+            this.textInput.TabIndex = 0;
             this.textInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textInput_KeyDown);
             this.textInput.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.textInput_KeyPress);
-            // 
-            // textLog
-            // 
-            this.textLog.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textLog.Location = new System.Drawing.Point(13, 225);
-            this.textLog.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.textLog.Multiline = true;
-            this.textLog.Name = "textLog";
-            this.textLog.ReadOnly = true;
-            this.textLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textLog.Size = new System.Drawing.Size(689, 75);
-            this.textLog.TabIndex = 2;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 17);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(162, 25);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "Zoom APIトークン";
-            // 
-            // flowLayoutPanel1
-            // 
-            this.flowLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.flowLayoutPanel1.Controls.Add(this.panelF1);
-            this.flowLayoutPanel1.Controls.Add(this.panelF2);
-            this.flowLayoutPanel1.Controls.Add(this.panelF3);
-            this.flowLayoutPanel1.Controls.Add(this.panelF4);
-            this.flowLayoutPanel1.Controls.Add(this.panelF5);
-            this.flowLayoutPanel1.Controls.Add(this.panelF6);
-            this.flowLayoutPanel1.Controls.Add(this.panelF7);
-            this.flowLayoutPanel1.Location = new System.Drawing.Point(11, 97);
-            this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(2);
-            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(693, 86);
-            this.flowLayoutPanel1.TabIndex = 4;
             // 
             // labelF1
             // 
             this.labelF1.AutoSize = true;
-            this.labelF1.Location = new System.Drawing.Point(2, 5);
+            this.labelF1.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelF1.Location = new System.Drawing.Point(0, 0);
             this.labelF1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelF1.Name = "labelF1";
-            this.labelF1.Size = new System.Drawing.Size(33, 25);
+            this.labelF1.Size = new System.Drawing.Size(28, 23);
             this.labelF1.TabIndex = 7;
             this.labelF1.Text = "F1";
             // 
             // textF1
             // 
-            this.textF1.Location = new System.Drawing.Point(39, 2);
+            this.textF1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textF1.Location = new System.Drawing.Point(28, 0);
             this.textF1.Margin = new System.Windows.Forms.Padding(2);
             this.textF1.Name = "textF1";
-            this.textF1.Size = new System.Drawing.Size(101, 33);
-            this.textF1.TabIndex = 0;
+            this.textF1.Size = new System.Drawing.Size(75, 30);
+            this.textF1.TabIndex = 1;
             // 
             // labelF2
             // 
             this.labelF2.AutoSize = true;
-            this.labelF2.Location = new System.Drawing.Point(2, 5);
+            this.labelF2.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelF2.Location = new System.Drawing.Point(0, 0);
             this.labelF2.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelF2.Name = "labelF2";
-            this.labelF2.Size = new System.Drawing.Size(33, 25);
+            this.labelF2.Size = new System.Drawing.Size(28, 23);
             this.labelF2.TabIndex = 8;
             this.labelF2.Text = "F2";
             // 
             // textF2
             // 
-            this.textF2.Location = new System.Drawing.Point(39, 2);
+            this.textF2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textF2.Location = new System.Drawing.Point(28, 0);
             this.textF2.Margin = new System.Windows.Forms.Padding(2);
             this.textF2.Name = "textF2";
-            this.textF2.Size = new System.Drawing.Size(101, 33);
-            this.textF2.TabIndex = 1;
+            this.textF2.Size = new System.Drawing.Size(75, 30);
+            this.textF2.TabIndex = 2;
             // 
             // labelF3
             // 
             this.labelF3.AutoSize = true;
-            this.labelF3.Location = new System.Drawing.Point(2, 5);
+            this.labelF3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelF3.Location = new System.Drawing.Point(0, 0);
             this.labelF3.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelF3.Name = "labelF3";
-            this.labelF3.Size = new System.Drawing.Size(33, 25);
+            this.labelF3.Size = new System.Drawing.Size(28, 23);
             this.labelF3.TabIndex = 9;
             this.labelF3.Text = "F3";
             // 
             // textF3
             // 
-            this.textF3.Location = new System.Drawing.Point(39, 2);
+            this.textF3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textF3.Location = new System.Drawing.Point(28, 0);
             this.textF3.Margin = new System.Windows.Forms.Padding(2);
             this.textF3.Name = "textF3";
-            this.textF3.Size = new System.Drawing.Size(101, 33);
-            this.textF3.TabIndex = 2;
+            this.textF3.Size = new System.Drawing.Size(75, 30);
+            this.textF3.TabIndex = 3;
             // 
             // labelF4
             // 
             this.labelF4.AutoSize = true;
-            this.labelF4.Location = new System.Drawing.Point(2, 5);
+            this.labelF4.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelF4.Location = new System.Drawing.Point(0, 0);
             this.labelF4.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelF4.Name = "labelF4";
-            this.labelF4.Size = new System.Drawing.Size(33, 25);
+            this.labelF4.Size = new System.Drawing.Size(28, 23);
             this.labelF4.TabIndex = 10;
             this.labelF4.Text = "F4";
             // 
             // textF4
             // 
-            this.textF4.Location = new System.Drawing.Point(39, 2);
+            this.textF4.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textF4.Location = new System.Drawing.Point(28, 0);
             this.textF4.Margin = new System.Windows.Forms.Padding(2);
             this.textF4.Name = "textF4";
-            this.textF4.Size = new System.Drawing.Size(101, 33);
-            this.textF4.TabIndex = 3;
+            this.textF4.Size = new System.Drawing.Size(75, 30);
+            this.textF4.TabIndex = 4;
             // 
             // labelF5
             // 
             this.labelF5.AutoSize = true;
-            this.labelF5.Location = new System.Drawing.Point(2, 5);
+            this.labelF5.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelF5.Location = new System.Drawing.Point(0, 0);
             this.labelF5.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelF5.Name = "labelF5";
-            this.labelF5.Size = new System.Drawing.Size(33, 25);
+            this.labelF5.Size = new System.Drawing.Size(28, 23);
             this.labelF5.TabIndex = 11;
             this.labelF5.Text = "F5";
             // 
             // textF5
             // 
-            this.textF5.Location = new System.Drawing.Point(39, 2);
+            this.textF5.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textF5.Location = new System.Drawing.Point(28, 0);
             this.textF5.Margin = new System.Windows.Forms.Padding(2);
             this.textF5.Name = "textF5";
-            this.textF5.Size = new System.Drawing.Size(101, 33);
-            this.textF5.TabIndex = 4;
+            this.textF5.Size = new System.Drawing.Size(75, 30);
+            this.textF5.TabIndex = 5;
             // 
             // labelF6
             // 
             this.labelF6.AutoSize = true;
-            this.labelF6.Location = new System.Drawing.Point(2, 5);
+            this.labelF6.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelF6.Location = new System.Drawing.Point(0, 0);
             this.labelF6.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelF6.Name = "labelF6";
-            this.labelF6.Size = new System.Drawing.Size(33, 25);
+            this.labelF6.Size = new System.Drawing.Size(28, 23);
             this.labelF6.TabIndex = 12;
             this.labelF6.Text = "F6";
             // 
             // textF6
             // 
-            this.textF6.Location = new System.Drawing.Point(39, 2);
+            this.textF6.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textF6.Location = new System.Drawing.Point(28, 0);
             this.textF6.Margin = new System.Windows.Forms.Padding(2);
             this.textF6.Name = "textF6";
-            this.textF6.Size = new System.Drawing.Size(101, 33);
-            this.textF6.TabIndex = 5;
+            this.textF6.Size = new System.Drawing.Size(75, 30);
+            this.textF6.TabIndex = 6;
             // 
             // labelF7
             // 
             this.labelF7.AutoSize = true;
-            this.labelF7.Location = new System.Drawing.Point(2, 5);
+            this.labelF7.Dock = System.Windows.Forms.DockStyle.Left;
+            this.labelF7.Location = new System.Drawing.Point(0, 0);
             this.labelF7.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.labelF7.Name = "labelF7";
-            this.labelF7.Size = new System.Drawing.Size(33, 25);
+            this.labelF7.Size = new System.Drawing.Size(28, 23);
             this.labelF7.TabIndex = 13;
             this.labelF7.Text = "F7";
             // 
             // textF7
             // 
-            this.textF7.Location = new System.Drawing.Point(39, 2);
+            this.textF7.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textF7.Location = new System.Drawing.Point(28, 0);
             this.textF7.Margin = new System.Windows.Forms.Padding(2);
             this.textF7.Name = "textF7";
-            this.textF7.Size = new System.Drawing.Size(101, 33);
-            this.textF7.TabIndex = 6;
+            this.textF7.Size = new System.Drawing.Size(76, 30);
+            this.textF7.TabIndex = 7;
             // 
-            // panelF1
+            // buttonMenu
             // 
-            this.panelF1.AutoSize = true;
-            this.panelF1.Controls.Add(this.labelF1);
-            this.panelF1.Controls.Add(this.textF1);
-            this.panelF1.Location = new System.Drawing.Point(3, 3);
-            this.panelF1.Name = "panelF1";
-            this.panelF1.Size = new System.Drawing.Size(142, 37);
-            this.panelF1.TabIndex = 14;
+            this.buttonMenu.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonMenu.Location = new System.Drawing.Point(701, 11);
+            this.buttonMenu.Name = "buttonMenu";
+            this.buttonMenu.Size = new System.Drawing.Size(73, 32);
+            this.buttonMenu.TabIndex = 8;
+            this.buttonMenu.Text = "menu";
+            this.buttonMenu.UseVisualStyleBackColor = true;
+            this.buttonMenu.Click += new System.EventHandler(this.buttonMenu_click);
             // 
-            // panelF2
+            // contextMenuStrip1
             // 
-            this.panelF2.AutoSize = true;
-            this.panelF2.Controls.Add(this.labelF2);
-            this.panelF2.Controls.Add(this.textF2);
-            this.panelF2.Location = new System.Drawing.Point(151, 3);
-            this.panelF2.Name = "panelF2";
-            this.panelF2.Size = new System.Drawing.Size(142, 37);
-            this.panelF2.TabIndex = 15;
+            this.contextMenuStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.menuZoomToken,
+            this.menuShowLog,
+            this.menuTopMost,
+            this.menuFocusInput,
+            this.menuFocusF1});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(293, 152);
             // 
-            // panelF3
+            // menuZoomToken
             // 
-            this.panelF3.AutoSize = true;
-            this.panelF3.Controls.Add(this.labelF3);
-            this.panelF3.Controls.Add(this.textF3);
-            this.panelF3.Location = new System.Drawing.Point(299, 3);
-            this.panelF3.Name = "panelF3";
-            this.panelF3.Size = new System.Drawing.Size(142, 37);
-            this.panelF3.TabIndex = 16;
+            this.menuZoomToken.Name = "menuZoomToken";
+            this.menuZoomToken.Size = new System.Drawing.Size(292, 24);
+            this.menuZoomToken.Text = "Zoom APIトークンを設定... (&Z)";
+            this.menuZoomToken.Click += new System.EventHandler(this.menuZoomToken_click);
             // 
-            // panelF4
+            // menuShowLog
             // 
-            this.panelF4.AutoSize = true;
-            this.panelF4.Controls.Add(this.labelF4);
-            this.panelF4.Controls.Add(this.textF4);
-            this.panelF4.Location = new System.Drawing.Point(447, 3);
-            this.panelF4.Name = "panelF4";
-            this.panelF4.Size = new System.Drawing.Size(142, 37);
-            this.panelF4.TabIndex = 17;
+            this.menuShowLog.Name = "menuShowLog";
+            this.menuShowLog.Size = new System.Drawing.Size(292, 24);
+            this.menuShowLog.Text = "ここまでのログを参照... (&L)";
+            this.menuShowLog.Click += new System.EventHandler(this.menuShowLog_Click);
             // 
-            // panelF5
+            // menuTopMost
             // 
-            this.panelF5.AutoSize = true;
-            this.panelF5.Controls.Add(this.labelF5);
-            this.panelF5.Controls.Add(this.textF5);
-            this.panelF5.Location = new System.Drawing.Point(3, 46);
-            this.panelF5.Name = "panelF5";
-            this.panelF5.Size = new System.Drawing.Size(142, 37);
-            this.panelF5.TabIndex = 18;
+            this.menuTopMost.CheckOnClick = true;
+            this.menuTopMost.Name = "menuTopMost";
+            this.menuTopMost.Size = new System.Drawing.Size(292, 24);
+            this.menuTopMost.Text = "最前面に配置 (&T)";
+            this.menuTopMost.CheckStateChanged += new System.EventHandler(this.menuTopMost_CheckStateChanged);
             // 
-            // panelF6
+            // menuFocusInput
             // 
-            this.panelF6.AutoSize = true;
-            this.panelF6.Controls.Add(this.labelF6);
-            this.panelF6.Controls.Add(this.textF6);
-            this.panelF6.Location = new System.Drawing.Point(151, 46);
-            this.panelF6.Name = "panelF6";
-            this.panelF6.Size = new System.Drawing.Size(142, 37);
-            this.panelF6.TabIndex = 19;
+            this.menuFocusInput.Name = "menuFocusInput";
+            this.menuFocusInput.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.I)));
+            this.menuFocusInput.Size = new System.Drawing.Size(292, 24);
+            this.menuFocusInput.Text = "入力欄にフォーカスを移動 (&I)";
+            this.menuFocusInput.Click += new System.EventHandler(this.menuFocusInput_click);
             // 
-            // panelF7
+            // tableLayoutPanel1
             // 
-            this.panelF7.AutoSize = true;
-            this.panelF7.Controls.Add(this.labelF7);
-            this.panelF7.Controls.Add(this.textF7);
-            this.panelF7.Location = new System.Drawing.Point(299, 46);
-            this.panelF7.Name = "panelF7";
-            this.panelF7.Size = new System.Drawing.Size(142, 37);
-            this.panelF7.TabIndex = 20;
+            this.tableLayoutPanel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tableLayoutPanel1.ColumnCount = 7;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 14.28571F));
+            this.tableLayoutPanel1.Controls.Add(this.panel1, 0, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel2, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel3, 2, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel4, 3, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel5, 4, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel6, 5, 0);
+            this.tableLayoutPanel1.Controls.Add(this.panel7, 6, 0);
+            this.tableLayoutPanel1.Location = new System.Drawing.Point(10, 52);
+            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            this.tableLayoutPanel1.RowCount = 1;
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 37F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(764, 37);
+            this.tableLayoutPanel1.TabIndex = 9;
             // 
-            // label2
+            // panel1
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 195);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(46, 25);
-            this.label2.TabIndex = 5;
-            this.label2.Text = "ログ";
+            this.panel1.Controls.Add(this.textF1);
+            this.panel1.Controls.Add(this.labelF1);
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(103, 31);
+            this.panel1.TabIndex = 0;
             // 
-            // checkBox1
+            // panel2
             // 
-            this.checkBox1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.Location = new System.Drawing.Point(567, 194);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(136, 29);
-            this.checkBox1.TabIndex = 6;
-            this.checkBox1.Text = "最前面に配置";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.panel2.Controls.Add(this.textF2);
+            this.panel2.Controls.Add(this.labelF2);
+            this.panel2.Location = new System.Drawing.Point(112, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(103, 31);
+            this.panel2.TabIndex = 1;
             // 
-            // button1
+            // panel3
             // 
-            this.button1.Location = new System.Drawing.Point(63, 190);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(387, 34);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "シーケンス初期化（字幕が出ない時に押す）";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.panel3.Controls.Add(this.textF3);
+            this.panel3.Controls.Add(this.labelF3);
+            this.panel3.Location = new System.Drawing.Point(221, 3);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(103, 31);
+            this.panel3.TabIndex = 2;
+            // 
+            // panel4
+            // 
+            this.panel4.Controls.Add(this.textF4);
+            this.panel4.Controls.Add(this.labelF4);
+            this.panel4.Location = new System.Drawing.Point(330, 3);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(103, 31);
+            this.panel4.TabIndex = 3;
+            // 
+            // panel5
+            // 
+            this.panel5.Controls.Add(this.textF5);
+            this.panel5.Controls.Add(this.labelF5);
+            this.panel5.Location = new System.Drawing.Point(439, 3);
+            this.panel5.Name = "panel5";
+            this.panel5.Size = new System.Drawing.Size(103, 31);
+            this.panel5.TabIndex = 4;
+            // 
+            // panel6
+            // 
+            this.panel6.Controls.Add(this.textF6);
+            this.panel6.Controls.Add(this.labelF6);
+            this.panel6.Location = new System.Drawing.Point(548, 3);
+            this.panel6.Name = "panel6";
+            this.panel6.Size = new System.Drawing.Size(103, 31);
+            this.panel6.TabIndex = 5;
+            // 
+            // panel7
+            // 
+            this.panel7.Controls.Add(this.textF7);
+            this.panel7.Controls.Add(this.labelF7);
+            this.panel7.Location = new System.Drawing.Point(657, 3);
+            this.panel7.Name = "panel7";
+            this.panel7.Size = new System.Drawing.Size(104, 31);
+            this.panel7.TabIndex = 6;
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.ImageScalingSize = new System.Drawing.Size(20, 20);
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 91);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(782, 26);
+            this.statusStrip1.TabIndex = 10;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel
+            // 
+            this.toolStripStatusLabel.Name = "toolStripStatusLabel";
+            this.toolStripStatusLabel.Size = new System.Drawing.Size(229, 20);
+            this.toolStripStatusLabel.Text = "（Zoom APIトークンが未設定です）";
+            // 
+            // menuFocusF1
+            // 
+            this.menuFocusF1.Name = "menuFocusF1";
+            this.menuFocusF1.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
+            this.menuFocusF1.Size = new System.Drawing.Size(292, 24);
+            this.menuFocusF1.Text = "F1欄にフォーカスを移動 (&F)";
+            this.menuFocusF1.Click += new System.EventHandler(this.menuFocusF1_Click);
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(715, 314);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.checkBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.flowLayoutPanel1);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textLog);
+            this.ClientSize = new System.Drawing.Size(782, 117);
+            this.ContextMenuStrip = this.contextMenuStrip1;
+            this.Controls.Add(this.statusStrip1);
+            this.Controls.Add(this.tableLayoutPanel1);
+            this.Controls.Add(this.buttonMenu);
             this.Controls.Add(this.textInput);
-            this.Controls.Add(this.textUrl);
-            this.Font = new System.Drawing.Font("メイリオ", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
+            this.Font = new System.Drawing.Font("メイリオ", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(128)));
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Zoom Captioner";
-            this.flowLayoutPanel1.ResumeLayout(false);
-            this.flowLayoutPanel1.PerformLayout();
-            this.panelF1.ResumeLayout(false);
-            this.panelF1.PerformLayout();
-            this.panelF2.ResumeLayout(false);
-            this.panelF2.PerformLayout();
-            this.panelF3.ResumeLayout(false);
-            this.panelF3.PerformLayout();
-            this.panelF4.ResumeLayout(false);
-            this.panelF4.PerformLayout();
-            this.panelF5.ResumeLayout(false);
-            this.panelF5.PerformLayout();
-            this.panelF6.ResumeLayout(false);
-            this.panelF6.PerformLayout();
-            this.panelF7.ResumeLayout(false);
-            this.panelF7.PerformLayout();
+            this.contextMenuStrip1.ResumeLayout(false);
+            this.tableLayoutPanel1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
+            this.panel3.ResumeLayout(false);
+            this.panel3.PerformLayout();
+            this.panel4.ResumeLayout(false);
+            this.panel4.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
+            this.panel6.ResumeLayout(false);
+            this.panel6.PerformLayout();
+            this.panel7.ResumeLayout(false);
+            this.panel7.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox textUrl;
         private System.Windows.Forms.TextBox textInput;
-        private System.Windows.Forms.TextBox textLog;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.TextBox textF1;
         private System.Windows.Forms.TextBox textF2;
         private System.Windows.Forms.TextBox textF3;
@@ -416,16 +446,23 @@
         private System.Windows.Forms.Label labelF5;
         private System.Windows.Forms.Label labelF6;
         private System.Windows.Forms.Label labelF7;
-        private System.Windows.Forms.Panel panelF1;
-        private System.Windows.Forms.Panel panelF2;
-        private System.Windows.Forms.Panel panelF3;
-        private System.Windows.Forms.Panel panelF4;
-        private System.Windows.Forms.Panel panelF5;
-        private System.Windows.Forms.Panel panelF6;
-        private System.Windows.Forms.Panel panelF7;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.CheckBox checkBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonMenu;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem menuZoomToken;
+        private System.Windows.Forms.ToolStripMenuItem menuShowLog;
+        private System.Windows.Forms.ToolStripMenuItem menuTopMost;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.Panel panel5;
+        private System.Windows.Forms.Panel panel6;
+        private System.Windows.Forms.Panel panel7;
+        private System.Windows.Forms.StatusStrip statusStrip1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel;
+        private System.Windows.Forms.ToolStripMenuItem menuFocusInput;
+        private System.Windows.Forms.ToolStripMenuItem menuFocusF1;
     }
 }
 

@@ -19,40 +19,60 @@ namespace ZoomCaption
 
         private int Seq { get; set; } = 0;
 
+        private string ZoomToken { get; set; } = "";
+
+        private string ZoomLog { get; set; } = "";
+
         private bool IsLegitSeq() => Seq > 0;
         private void ResetSeq() { Seq = 0; }
 
-        private string GetApiKey() => IsLegitApiKey() ? textUrl.Text : "";
-        private bool IsLegitApiKey() => textUrl.Text.StartsWith("https://");
+        private string GetApiKey() => IsLegitApiKey(ZoomToken) ? ZoomToken : "";
+        private bool IsLegitApiKey(string key) => key.StartsWith("https://");
+
+        private LineInputDialog inputDialog;
+        private Log logDialog;
 
         public Form1()
         {
             InitializeComponent();
         }
 
-        private void WriteInnerLog(string message, [CallerMemberName] string callerName = "")
-        {
-            var now = DateTimeOffset.Now.ToString("u");
-            var msg = $"{now} [{callerName}] {message}";
-            System.Diagnostics.Debug.WriteLine(msg);
-        }
-
         private void AddLog(string message, [CallerMemberName] string callerName = "")
         {
             var now = DateTimeOffset.Now.ToString("HH:mm:ss.ff");
-            textLog.AppendText($"{now} {message}\r\n");
-            WriteInnerLog(message, callerName);
+            ZoomLog += $"{now} {message}" + Environment.NewLine;
+        }
+
+        private void UpdateStatusMessage(string message)
+        {
+            if (string.IsNullOrEmpty(message))
+            {
+                if (IsLegitApiKey(ZoomToken))
+                {
+                    toolStripStatusLabel.Text = "Zoom字幕送信可能";
+                }
+                else
+                {
+                    toolStripStatusLabel.Text = "Zoom APIトークンが未設定です。";
+                }
+            }
+            else
+            {
+                toolStripStatusLabel.Text = message;
+            }
         }
 
         private void OnSuccess()
         {
             textInput.BackColor = SystemColors.Window;
+            UpdateStatusMessage("");
         }
 
         private void OnFailure(string message)
         {
             textInput.BackColor = Color.Pink;
             AddLog(message);
+            UpdateStatusMessage(message);
         }
 
         private string MakeGetUrl(string apikey)
@@ -79,7 +99,9 @@ namespace ZoomCaption
             }
             catch (Exception ex)
             {
-                WriteInnerLog(ex.Message);
+                var msg = "Zoom APIアクセスエラーです。メッセージ:" + ex.Message;
+                AddLog(msg);
+                UpdateStatusMessage(msg);
             }
             return -1;
         }
@@ -100,8 +122,8 @@ namespace ZoomCaption
 
         private async Task<bool> TrySendAsync(string message)
         {
-            if (IsLegitApiKey() != true) return false;
             var apiKey = GetApiKey();
+            if (IsLegitApiKey(apiKey) != true) return false;
 
             if (IsLegitSeq()) { Seq++; }
             else { Seq = await FetchSeq(apiKey) + 1; }
@@ -129,11 +151,15 @@ namespace ZoomCaption
 
         private async void textInput_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar == 13 && textInput.Text.Length > 0 && IsLegitApiKey())
+            if (e.KeyChar == 13 && textInput.Text.Length > 0)
             {
                 var message = textInput.Text;
+                AddLog(message);
                 textInput.Text = "";
-                await TrySendAsync(message);
+                if (IsLegitApiKey(ZoomToken))
+                {
+                    await TrySendAsync(message);
+                }
             }
         }
 
@@ -181,14 +207,55 @@ namespace ZoomCaption
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void buttonMenu_click(object sender, EventArgs e)
         {
-            TopMost = checkBox1.Checked;
+            var x = buttonMenu.Width - contextMenuStrip1.Width;
+            var y = buttonMenu.Height;
+            contextMenuStrip1.Show(buttonMenu, new Point(x, y));
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void menuZoomToken_click(object sender, EventArgs e)
         {
-            ResetSeq();
+            if (inputDialog == null) { inputDialog = new LineInputDialog(); }
+            if (inputDialog
+                .SetValue(ZoomToken)
+                .SetTitle("Zoom APIトークン入力")
+                .ShowDialog() == DialogResult.OK)
+            {
+                if (IsLegitApiKey(inputDialog.Value))
+                {
+                    ZoomToken = inputDialog.Value;
+                    Seq = 0;
+                } else
+                {
+                    MessageBox.Show("APIトークンの形式が不適切です。", "エラー");
+                }
+            }
+            UpdateStatusMessage("");
+        }
+
+        private void menuTopMost_CheckStateChanged(object sender, EventArgs e)
+        {
+            TopMost = menuTopMost.Checked;
+        }
+
+        private void menuShowLog_Click(object sender, EventArgs e)
+        {
+            if (logDialog == null)
+            {
+                logDialog = new Log();
+            }
+            logDialog.SetLog(ZoomLog).ShowDialog();
+        }
+
+        private void menuFocusInput_click(object sender, EventArgs e)
+        {
+            textInput.Focus();
+        }
+
+        private void menuFocusF1_Click(object sender, EventArgs e)
+        {
+            textF1.Focus();
         }
     }
 }
